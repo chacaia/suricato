@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="suricato.css" />
+  <meta name="copyright" content="suricato">
+  <meta name="robots" content="index">
+  <meta name="author" content="Grupo de investigación Enfermería y APS - Uptc - Oscar Rodríguez">
+  <link rel="shortcut icon" href="img/suricate.jpg">
+  <title>suricato</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>suricato</h1>
+    <h2>Ingrese sus datos personales</h2>
+  </header>
+
+  <div id="MAIN">
+    <section id="content">
+      <input
+        placeholder="Peso en kg"
+        name="peso"
+        type="number"
+        id="kg">
+      <br>
+      <input
+        placeholder="Altura en cm"
+        name="altura"
+        type="number"
+        id="cm">
+      <br>
+      <input
+        placeholder="Cintura en cm"
+        name="cintura"
+        type="number"
+        id="ccm">
+      <br>
+      <input
+        placeholder="Cadera en cm"
+        name="cadera"
+        type="number"
+        id="cch">
+      <br>
+      <input placeholder="Edad" name="edad" type="number" id="edad">
+      <br>
+      <input
+        placeholder="Pliegue tricipital (mm)"
+        name="p_tric"
+        type="number"
+        id="p_tric">
+      <br>
+      <input
+        placeholder="Pliegue subescapular"
+        name="p_sube"
+        type="number"
+        id="p_sube">
+      <br>
+      <input
+        placeholder="Pliegue suprailiaco"
+        name="p_supra"
+        type="number"
+        id="p_supra">
+      <br>
+      <input
+        placeholder="Pliegue abdominal"
+        name="p_abdo"
+        type="number"
+        id="p_abdo">
+      <br>
+      
+    </section>
+  </div>
+
+  <div>
+    <button id="calc_imc">Calcular IMC</button>
+    <p><span id="imc"></span></p>
+    <p><span id="lectura"></span></p>
+    <script type="text/javascript">
+      calc_imc = document.getElementById("calc_imc");
+      calc_imc.onclick = function () {
+        kg = document.getElementById("kg");
+        cm = document.getElementById("cm");
+        imc = document.getElementById("imc");
+        lectura = document.getElementById("lectura");
+        if (kg.value != "" && cm.value != "") {
+          imcx = (kg.value / (cm.value * cm.value)) * 10000;
+          imc.innerHTML = Math.round(imcx * 100) / 100;
+          console.log(imcx);
+          if (imcx < 18.5) {
+            lectura.innerHTML = "Peso inferior al normal";
+          } else if (imcx >= 18.5 && imcx <= 24.9) {
+            lectura.innerHTML = "Peso normal";
+          } else if (imcx >= 25 && imcx <= 29.9) {
+            lectura.innerHTML = "Peso superior al normal";
+          } else if (imcx > 30) {
+            lectura.innerHTML = "Obesidad";
+          }
+        } else {
+          alert("Por favor, ingrese peso y altura, gracias!");
+        }
+      };
+    </script>
+  </div>
+  <br>
+  <div>
+    <button id="calc_icc">Calcular ICC</button>
+    <p><span id="icc"></span></p>
+    <p><span id="lectura_icc"></span></p>
+    <script type="text/javascript">
+      calc_icc = document.getElementById("calc_icc");
+      calc_icc.onclick = function () {
+        ccm = document.getElementById("ccm");
+        cch = document.getElementById("cch");
+        icc = document.getElementById("icc");
+        lectura_icc = document.getElementById("lectura_icc");
+        if (ccm.value != "" && cch.value != "") {
+          iccx = ccm.value / cch.value;
+          icc.innerHTML = Math.round(iccx * 100) / 100;
+          console.log(iccx);
+          if (iccx < 0.8) {
+            lectura_icc.innerHTML = "Bajo riesgo cardiovascular";
+          } else if (iccx >= 0.8 && iccx <= 1) {
+            lectura_icc.innerHTML = "Riesgo cardiovascular";
+          } else if (iccx > 1) {
+            lectura_icc.innerHTML = "Alto riesgo cardiovascular";
+          }
+        } else {
+          alert("Por favor ingrese cintura y cadera, gracias!");
+        }
+      };
+    </script>
+  </div>
+  <br>
+  <div>
+    <button id="calc_mbasal">Calcular Metabolismo basal</button>
+    <p><span id="metabolismobasal_hombres"></span></p>
+    <p><span id="metabolismobasal_mujeres"></span></p>
+    <script type="text/javascript">
+      calc_mbasal = document.getElementById("calc_mbasal");
+      kg = document.getElementById("kg");
+      cm = document.getElementById("cm");
+      edad = document.getElementById("edad");
+      metabolismobasal_hombres = document.getElementById(
+        "metabolismobasal_hombres"
+      );
+      metabolismobasal_mujeres = document.getElementById(
+        "metabolismobasal_mujeres"
+      );
+      calc_mbasal.onclick = function () {
+        if (kg.value != "" && cm.value != "" && edad.value != "") {
+          metabolismo_hombres =
+            10 * kg.value + 6.25 * cm.value - 5 * edad.value + 5;
+          metabolismo_mujeres =
+            10 * kg.value + 6.25 * cm.value - 5 * edad.value - 161;
+
+          metabolismobasal_hombres.innerHTML =
+            "Hombres: " + metabolismo_hombres;
+          metabolismobasal_mujeres.innerHTML =
+            "Mujeres: " + metabolismo_mujeres;
+        } else {
+          alert("Por favor ingrese peso, altura y edad, gracias!");
+        }
+      };
+    </script>
+  </div>
+  <br>
+  <div>
+    <button id="calc_peso_ideal">Calcular peso ideal</button>
+    <p><span id="pesoideal"></span></p>
+    <p><span id="lectura_peso_ideal"></span></p>
+    <script type="text/javascript">
+      calc_peso_ideal = document.getElementById("calc_peso_ideal");
+      calc_peso_ideal.onclick = function () {
+        peso = document.getElementById("kg");
+        altura = document.getElementById("cm");
+        pesoideal = document.getElementById("pesoideal");
+        lectura_peso_ideal = document.getElementById("lectura_peso_ideal");
+        if (peso.value != "" && altura.value != "") {
+          peso_ideal_minimo =
+            (altura.value / 100) * (altura.value / 100) * 20;
+          peso_ideal_maximo =
+            (altura.value / 100) * (altura.value / 100) * 25;
+
+          peso_ideal_minimo = Math.round(peso_ideal_minimo * 100) / 100;
+          peso_ideal_maximo = Math.round(peso_ideal_maximo * 100) / 100;
+
+          pesoideal.innerHTML =
+            "Peso Ideal: Mínimo " +
+            peso_ideal_minimo +
+            " Máximo " +
+            peso_ideal_maximo;
+          if (peso.value < peso_ideal_minimo) {
+            lectura_peso_ideal.innerHTML = "Su peso es bajo";
+          } else if (
+            peso.value >= peso_ideal_minimo &&
+            peso.value <= peso_ideal_maximo
+          ) {
+            lectura_peso_ideal.innerHTML = "Su peso es normal";
+          } else if (peso.value >= peso_ideal_maximo) {
+            lectura_peso_ideal.innerHTML = "Su peso es alto";
+          }
+        } else {
+          alert("Por favor ingrese peso y altura, gracias!");
+        }
+      };
+    </script>
+  </div>
+  <br>
+  <div>
+    <button id="calc_pgrasa">Calcular rango de porcentaje de grasa</button>
+    <p><span id="porcentajegrasa"></span></p>
+    <p><span id="lectura_pgrasa"></span></p>
+    <script type="text/javascript">
+      calc_pgrasa = document.getElementById("calc_pgrasa");
+      calc_pgrasa.onclick = function () {
+        ptric = document.getElementById("p_tric");
+        psube = document.getElementById("p_sube");
+        psupra = document.getElementById("p_supra");
+        pabdo = document.getElementById("p_abdo");
+        porcentajegrasa = document.getElementById("porcentajegrasa");
+        lectura_pgrasa = document.getElementById("lectura_pgrasa");
+        if (
+          ptric.value != "" &&
+          psube.value != "" &&
+          psupra.value != "" &&
+          pabdo.value != ""
+        ) {
+          pgrasa =
+            (parseInt(ptric.value) +
+              parseInt(psube.value) +
+              parseInt(psupra.value) +
+              parseInt(pabdo.value)) *
+            0.153 +
+            5.783;
+
+          porcentajegrasa.innerHTML = Math.round(pgrasa);
+          console.log(pgrasa);
+          if (pgrasa < 20) {
+            lectura_pgrasa.innerHTML = "NORMAL";
+          } else {
+            lectura_pgrasa.innerHTML = "EXCESO";
+          }
+        } else {
+          alert(
+            "Por favor ingrese pliegues tricipital, subescapular, suprailiaco y abdominal, gracias"
+          );
+        }
+      };
+    </script>
+  </div>
+  <br>
+  <button id="borrar">Borrar</button>
+  <script type="text/javascript">
+    document.getElementById("borrar").addEventListener("click", function() {
+      var inputs = document.querySelectorAll("input[type='number']");
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+      }
+
+      var spans = document.querySelectorAll("span");
+      for (var j = 0; j < spans.length; j++) {
+        spans[j].innerHTML = "";
+      }
+    });
+  </script>
+</body>
+
+<footer>
+  <nav id="navfooter">
+    <h5>
+      Grupo de Investigación Enfermería y APS
+      <br>
+      &copy; Uptc - 2023
+    </h5>      
+  </nav>
+</footer>
+
+</html>
