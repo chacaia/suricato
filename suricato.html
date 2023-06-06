@@ -6,154 +6,106 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="suricato.css" />
-  <title>suricato</title>
   <style>
     html {
-      background-color: hsl(240, 20%, 99%);
+      font-family: Arial, sans-serif;
     }
-  
+
     body {
-      background-color: rgb(42, 95, 165);
-      color: beige;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 20%;
-      border: 2px solid rgb(10, 5, 117);
-      text-align: center;
-      align-content: center;
-      margin-bottom: 4%;
-      margin-top: 4%;
-      width: 60%;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
     }
-  
+
     header {
-      background-color: rgb(42, 95, 165);
-      height: 40px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.6rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      text-rendering: auto;
+      background-color: #333;
       color: #fff;
-      width: 100%;
-      margin: 0%;
+      padding: 10px;
+      text-align: center;
     }
-  
+
     h1 {
-      padding: 0 16px;
-      border-radius: 2px;
-      background-color: rgb(6, 40, 85);
-      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0 2px 2px 0 rgba(0, 0, 0, 0.14),
-        0 1px 5px 0 rgba(0, 0, 0, 0.12);
-      color: #fff;
-      transition: background-color 15ms linear,
-        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-      height: 36px;
-      line-height: 2.25rem;
-      font-family: sans-serif;
-      font-size: 2rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-align: center;
-      text-transform: none;
+      font-size: 28px;
+      margin: 0;
     }
-  
+
     h2 {
-      padding: 0 16px;
-      border-radius: 2px;
-      background-color: rgb(6, 40, 85);
-      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0 2px 2px 0 rgba(0, 0, 0, 0.14),
-        0 1px 5px 0 rgba(0, 0, 0, 0.12);
-      color: #fff;
-      transition: background-color 15ms linear,
-        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-      height: 36px;
-      line-height: 2.25rem;
-      font-family: sans-serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-align: center;
-      text-transform: none;
+      font-size: 20px;
+      margin: 0;
     }
-  
+
     #MAIN {
-      background-color: rgb(42, 95, 165);
-      color: rgb(11, 105, 105);
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 20%;
-      margin-bottom: 4%;
-      margin-top: 12%;
-      width: 60%;
+      background-color: #fff;
+      color: #333;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-  
+
     input {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-size: 25px;
-      margin-block-end: 5px;
-      border-bottom: 5px blue;
-    }
-  
-    button {
-      padding: 0 16px;
-      border-radius: 10px;
-      background-color: rgb(36, 53, 63);
-      box-shadow: 0 3px 1px -2px rgba(60, 11, 235, 0.2),
-        0 2px 2px 0 rgba(128, 109, 212, 0.14),
-        0 1px 5px 0 rgba(149, 144, 196, 0.14);
-      color: #fff;
-      transition: background-color 15ms linear,
-        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-      height: 36px;
-      line-height: 2.25rem;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: none;
-    }
-  
-    #borrar {
-      padding: 0 16px;
-      border-radius: 10px;
-      background-color: rgb(17, 44, 59);
-      box-shadow: 0 3px 1px -2px rgba(60, 11, 235, 0.2),
-        0 2px 2px 0 rgba(128, 109, 212, 0.14),
-        0 1px 5px 0 rgba(149, 144, 196, 0.14);
-      color: #ee0612;
-      transition: background-color 15ms linear,
-        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-      height: 36px;
-      line-height: 2.25rem;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: none;
-    }
-  
-    #navfooter {
-      background-color: rgb(6, 40, 85);
-      height: 30px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.8rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      text-rendering: auto;
-      color: #fff;
+      display: block;
       width: 100%;
-      margin: 2%;
-      margin-bottom: 2px;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    #calc_imc,
+    #calc_icc,
+    #calc_mbasal,
+    #calc_peso_ideal,
+    #calc_pgrasa,
+    #borrar {
+      margin-top: 20px;
+    }
+
+    #imc,
+    #icc,
+    #metabolismobasal_hombres,
+    #metabolismobasal_mujeres,
+    #pesoideal,
+    #porcentajegrasa {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    #lectura,
+    #lectura_icc,
+    #lectura_peso_ideal,
+    #lectura_pgrasa {
+      font-size: 16px;
     }
   </style>
+  <title>suricato</title>
 </head>
 
 <body>
+
   <header>
     <h1>suricato</h1>
     <h2>Ingrese sus datos personales</h2>
@@ -211,6 +163,7 @@
         type="number"
         id="p_abdo">
       <br>
+
     </section>
   </div>
 
@@ -406,15 +359,15 @@
       }
     });
   </script>
-  <footer>
-    <nav id="navfooter">
-      <h5>
-        Grupo de Investigación Enfermería y APS
-        <br>
-        &copy; Uptc - 2023
-      </h5>
-    </nav>
-  </footer>
 </body>
 
+<footer>
+  <nav id="navfooter">
+    <h5>
+      Fundación Chacaia y Grupo Enfermería y APS
+      <br>
+      &copy; Funchacaia - Uptc - 2023
+    </h5>      
+  </nav>
+</footer>
 </html>
