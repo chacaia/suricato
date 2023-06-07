@@ -135,10 +135,23 @@
     </section>
   </div>
 
-  <div>
-    <button id="hombre">Hombre</button>
-    <button id="mujer">Mujer</button>
-  </div>
+<div>
+  <button id="hombre">Hombre</button>
+  <br>
+  <button id="mujer">Mujer</button>
+</div>
+
+<script type="text/javascript">
+  document.getElementById("hombre").addEventListener("click", function() {
+    document.getElementById("hombre").classList.add("active");
+    document.getElementById("mujer").classList.remove("active");
+  });
+
+  document.getElementById("mujer").addEventListener("click", function() {
+    document.getElementById("hombre").classList.remove("active");
+    document.getElementById("mujer").classList.add("active");
+  });
+</script>
 
   <div id="calculadora-hombres">
     <button id="calc_imc">IMC</button>
