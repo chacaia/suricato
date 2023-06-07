@@ -301,6 +301,50 @@
       };
     </script>
   </div>
+  <div>
+  <button id="calc_masa_magra">Calcular Masa Magra</button>
+  <p><span id="masa_magra"></span></p>
+  <p><span id="lectura_masa_magra"></span></p>
+  <script type="text/javascript">
+    calc_masa_magra = document.getElementById("calc_masa_magra");
+    calc_masa_magra.onclick = function () {
+      peso = document.getElementById("kg");
+      altura = document.getElementById("cm");
+      masa_magra = document.getElementById("masa_magra");
+      lectura_masa_magra = document.getElementById("lectura_masa_magra");
+      
+      if (peso.value != "" && altura.value != "") {
+        masa_magra_hombres = (0.407 * peso.value) + (0.267 * altura.value) - 19.2;
+        masa_magra_mujeres = (0.252 * peso.value) + (0.473 * altura.value) - 48.3;
+
+        masa_magra_hombres = Math.round(masa_magra_hombres * 100) / 100;
+        masa_magra_mujeres = Math.round(masa_magra_mujeres * 100) / 100;
+
+        masa_magra.innerHTML = "Masa Magra: Hombres " + masa_magra_hombres + " kg, Mujeres " + masa_magra_mujeres + " kg";
+
+        // Rangos de masa magra para hombres
+        if (masa_magra_hombres < 0.7 * promedio_hombres) {
+          lectura_masa_magra.innerHTML = "Bajo: Menos del 70% del promedio para la edad y la altura.";
+        } else if (masa_magra_hombres >= 0.7 * promedio_hombres && masa_magra_hombres <= 0.9 * promedio_hombres) {
+          lectura_masa_magra.innerHTML = "Normal: Alrededor del 70-90% del promedio para la edad y la altura.";
+        } else {
+          lectura_masa_magra.innerHTML = "Alto: Más del 90% del promedio para la edad y la altura.";
+        }
+
+        // Rangos de masa magra para mujeres
+        if (masa_magra_mujeres < 0.6 * promedio_mujeres) {
+          lectura_masa_magra.innerHTML = "Bajo: Menos del 60% del promedio para la edad y la altura.";
+        } else if (masa_magra_mujeres >= 0.6 * promedio_mujeres && masa_magra_mujeres <= 0.8 * promedio_mujeres) {
+          lectura_masa_magra.innerHTML = "Normal: Alrededor del 60-80% del promedio para la edad y la altura.";
+        } else {
+          lectura_masa_magra.innerHTML = "Alto: Más del 80% del promedio para la edad y la altura.";
+        }
+      } else {
+        alert("Por favor, ingrese peso y altura, gracias!");
+      }
+    };
+  </script>
+</div>
   <br>
   <div>
     <button id="calc_pgrasa">Calcular rango de porcentaje de grasa</button>
