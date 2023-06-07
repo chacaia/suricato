@@ -79,6 +79,7 @@
     #calc_icc,
     #calc_mbasal,
     #calc_peso_ideal,
+    #calc_masa_magra,
     #calc_pgrasa,
     #borrar {
       margin-top: 20px;
@@ -89,7 +90,8 @@
     #metabolismobasal_hombres,
     #metabolismobasal_mujeres,
     #pesoideal,
-    #porcentajegrasa {
+    #porcentajegrasa,
+    #masa_magra {
       font-size: 20px;
       font-weight: bold;
     }
@@ -97,7 +99,8 @@
     #lectura,
     #lectura_icc,
     #lectura_peso_ideal,
-    #lectura_pgrasa {
+    #lectura_pgrasa,
+    #lectura_masa_magra {
       font-size: 16px;
     }
   </style>
@@ -105,177 +108,180 @@
 </head>
 
 <body>
-
   <header>
-    <h1>Suricato,<h2>es salud</h2> </h1>
+    <h1>Suricato,<h2>es salud.</h2> </h1>
     <h2>Ingrese sus datos personales</h2>
   </header>
-
   <div id="MAIN">
     <section id="content">
-      <input
-        placeholder="Peso en kg"
-        name="peso"
-        type="number"
-        id="kg">
-      <br>
-      <input
-        placeholder="Altura en cm"
-        name="altura"
-        type="number"
-        id="cm">
-      <br>
-      <input
-        placeholder="Cintura en cm"
-        name="cintura"
-        type="number"
-        id="ccm">
-      <br>
-      <input
-        placeholder="Cadera en cm"
-        name="cadera"
-        type="number"
-        id="cch">
-      <br>
       <input placeholder="Edad" name="edad" type="number" id="edad">
       <br>
-      <input
-        placeholder="Pliegue tricipital (mm)"
-        name="p_tric"
-        type="number"
-        id="p_tric">
+      <input placeholder="Peso en kg" name="peso" type="number" id="kg">
       <br>
-      <input
-        placeholder="Pliegue subescapular"
-        name="p_sube"
-        type="number"
-        id="p_sube">
+      <input placeholder="Altura en cm" name="altura" type="number" id="cm">
       <br>
-      <input
-        placeholder="Pliegue suprailiaco"
-        name="p_supra"
-        type="number"
-        id="p_supra">
+      <input placeholder="Cintura en cm" name="cintura" type="number" id="ccm">
       <br>
-      <input
-        placeholder="Pliegue abdominal"
-        name="p_abdo"
-        type="number"
-        id="p_abdo">
+      <input placeholder="Cadera en cm" name="cadera" type="number" id="cch">
       <br>
-
+      <input placeholder="Pliegue tricipital (mm)" name="p_tric" type="number" id="p_tric">
+      <br>
+      <input placeholder="Pliegue subescapular" name="p_sube" type="number" id="p_sube">
+      <br>
+      <input placeholder="Pliegue suprailiaco" name="p_supra" type="number" id="p_supra">
+      <br>
+      <input placeholder="Pliegue abdominal" name="p_abdo" type="number" id="p_abdo">
+      <br>
     </section>
   </div>
 
   <div>
-    <button id="calc_imc">Calcular IMC</button>
+    <button id="hombre">Hombre</button>
+    <button id="mujer">Mujer</button>
+  </div>
+
+  <div id="calculadora-hombres">
+    <button id="calc_imc">IMC</button>
     <p><span id="imc"></span></p>
     <p><span id="lectura"></span></p>
-    <script type="text/javascript">
-      calc_imc = document.getElementById("calc_imc");
-      calc_imc.onclick = function () {
-        kg = document.getElementById("kg");
-        cm = document.getElementById("cm");
-        imc = document.getElementById("imc");
-        lectura = document.getElementById("lectura");
-        if (kg.value != "" && cm.value != "") {
-          imcx = (kg.value / (cm.value * cm.value)) * 10000;
-          imc.innerHTML = Math.round(imcx * 100) / 100;
-          console.log(imcx);
-          if (imcx < 18.5) {
-            lectura.innerHTML = "Peso inferior al normal";
-          } else if (imcx >= 18.5 && imcx <= 24.9) {
-            lectura.innerHTML = "Peso normal";
-          } else if (imcx >= 25 && imcx <= 29.9) {
-            lectura.innerHTML = "Peso superior al normal";
-          } else if (imcx > 30) {
-            lectura.innerHTML = "Obesidad";
-          }
-        } else {
-          alert("Por favor, ingrese peso y altura, gracias!");
-        }
-      };
-    </script>
-  </div>
-  <br>
-  <div>
-    <button id="calc_icc">Calcular ICC</button>
+    <button id="calc_icc">ICC</button>
     <p><span id="icc"></span></p>
     <p><span id="lectura_icc"></span></p>
-    <script type="text/javascript">
-      calc_icc = document.getElementById("calc_icc");
-      calc_icc.onclick = function () {
-        ccm = document.getElementById("ccm");
-        cch = document.getElementById("cch");
-        icc = document.getElementById("icc");
-        lectura_icc = document.getElementById("lectura_icc");
-        if (ccm.value != "" && cch.value != "") {
-          iccx = ccm.value / cch.value;
-          icc.innerHTML = Math.round(iccx * 100) / 100;
-          console.log(iccx);
-          if (iccx < 0.8) {
-            lectura_icc.innerHTML = "Bajo riesgo cardiovascular";
-          } else if (iccx >= 0.8 && iccx <= 1) {
-            lectura_icc.innerHTML = "Riesgo cardiovascular";
-          } else if (iccx > 1) {
-            lectura_icc.innerHTML = "Alto riesgo cardiovascular";
-          }
-        } else {
-          alert("Por favor ingrese cintura y cadera, gracias!");
-        }
-      };
-    </script>
-  </div>
-  <br>
-  <div>
-    <button id="calc_mbasal">Calcular Metabolismo basal</button>
+    <button id="calc_mbasal">Metabolismo basal</button>
     <p><span id="metabolismobasal_hombres"></span></p>
-    <p><span id="metabolismobasal_mujeres"></span></p>
-    <script type="text/javascript">
-      calc_mbasal = document.getElementById("calc_mbasal");
-      kg = document.getElementById("kg");
-      cm = document.getElementById("cm");
-      edad = document.getElementById("edad");
-      metabolismobasal_hombres = document.getElementById(
-        "metabolismobasal_hombres"
-      );
-      metabolismobasal_mujeres = document.getElementById(
-        "metabolismobasal_mujeres"
-      );
-      calc_mbasal.onclick = function () {
-        if (kg.value != "" && cm.value != "" && edad.value != "") {
-          metabolismo_hombres =
-            10 * kg.value + 6.25 * cm.value - 5 * edad.value + 5;
-          metabolismo_mujeres =
-            10 * kg.value + 6.25 * cm.value - 5 * edad.value - 161;
+    <button id="calc_peso_ideal">Peso ideal</button>
+    <p><span id="pesoideal"></span></p>
+    <p><span id="lectura_peso_ideal"></span></p>
+    <button id="calc_masa_magra">Masa Magra</button>
+    <p><span id="masa_magra"></span></p>
+    <p><span id="lectura_masa_magra"></span></p>
+    <button id="calc_pgrasa">Rango de porcentaje de grasa</button>
+    <p><span id="porcentajegrasa"></span></p>
+    <p><span id="lectura_pgrasa"></span></p>
+  </div>
 
-          metabolismobasal_hombres.innerHTML =
-            "Hombres: " + metabolismo_hombres;
-          metabolismobasal_mujeres.innerHTML =
-            "Mujeres: " + metabolismo_mujeres;
+  <div id="calculadora-mujeres">
+    <button id="calc_imc">IMC</button>
+    <p><span id="imc"></span></p>
+    <p><span id="lectura"></span></p>
+    <button id="calc_icc">ICC</button>
+    <p><span id="icc"></span></p>
+    <p><span id="lectura_icc"></span></p>
+    <button id="calc_mbasal">Metabolismo basal</button>
+    <p><span id="metabolismobasal_mujeres"></span></p>
+    <button id="calc_peso_ideal">Peso ideal</button>
+    <p><span id="pesoideal"></span></p>
+    <p><span id="lectura_peso_ideal"></span></p>
+    <button id="calc_masa_magra">Masa Magra</button>
+    <p><span id="masa_magra"></span></p>
+    <p><span id="lectura_masa_magra"></span></p>
+    <button id="calc_pgrasa">Rango de porcentaje de grasa</button>
+    <p><span id="porcentajegrasa"></span></p>
+    <p><span id="lectura_pgrasa"></span></p>
+  </div>
+
+  <br>
+  <button id="borrar">Borrar</button>
+
+  <script type="text/javascript">
+    var calculadoraHombres = document.getElementById("calculadora-hombres");
+    var calculadoraMujeres = document.getElementById("calculadora-mujeres");
+
+    document.getElementById("hombre").addEventListener("click", function () {
+      calculadoraHombres.style.display = "block";
+      calculadoraMujeres.style.display = "none";
+    });
+
+    document.getElementById("mujer").addEventListener("click", function () {
+      calculadoraHombres.style.display = "none";
+      calculadoraMujeres.style.display = "block";
+    });
+
+    document.getElementById("calc_imc").addEventListener("click", function () {
+      var kg = document.getElementById("kg").value;
+      var cm = document.getElementById("cm").value;
+      var imc = document.getElementById("imc");
+      var lectura = document.getElementById("lectura");
+
+      if (kg != "" && cm != "") {
+        var imcx = (kg / (cm * cm)) * 10000;
+        imc.innerHTML = Math.round(imcx * 100) / 100;
+
+        if (imcx < 18.5) {
+          lectura.innerHTML = "Peso inferior al normal";
+        } else if (imcx >= 18.5 && imcx <= 24.9) {
+          lectura.innerHTML = "Peso normal";
+        } else if (imcx >= 25 && imcx <= 29.9) {
+          lectura.innerHTML = "Peso superior al normal";
+        } else if (imcx > 30) {
+          lectura.innerHTML = "Obesidad";
+        }
+      } else {
+        alert("Por favor, ingrese peso y altura");
+      }
+    });
+
+    document.getElementById("calc_icc").addEventListener("click", function () {
+      var ccm = document.getElementById("ccm").value;
+      var cch = document.getElementById("cch").value;
+      var icc = document.getElementById("icc");
+      var lectura_icc = document.getElementById("lectura_icc");
+
+      if (ccm != "" && cch != "") {
+        var iccx = ccm / cch;
+        icc.innerHTML = Math.round(iccx * 100) / 100;
+
+        if (iccx < 0.8) {
+          lectura_icc.innerHTML = "Bajo riesgo cardiovascular";
+        } else if (iccx >= 0.8 && iccx <= 1) {
+          lectura_icc.innerHTML = "Riesgo cardiovascular";
+        } else if (iccx > 1) {
+          lectura_icc.innerHTML = "Alto riesgo cardiovascular";
+        }
+      } else {
+        alert("Por favor ingrese cintura y cadera");
+      }
+    });
+
+    document
+      .getElementById("calc_mbasal")
+      .addEventListener("click", function () {
+        var kg = document.getElementById("kg").value;
+        var cm = document.getElementById("cm").value;
+        var edad = document.getElementById("edad").value;
+        var metabolismobasal_hombres = document.getElementById(
+          "metabolismobasal_hombres"
+        );
+        var metabolismobasal_mujeres = document.getElementById(
+          "metabolismobasal_mujeres"
+        );
+
+        if (kg != "" && cm != "" && edad != "") {
+          var metabolismo_hombres =
+            10 * kg + 6.25 * cm - 5 * edad + 5;
+          var metabolismo_mujeres =
+            10 * kg + 6.25 * cm - 5 * edad - 161;
+
+          metabolismobasal_hombres.innerHTML = "Hombres: " + metabolismo_hombres;
+          metabolismobasal_mujeres.innerHTML = "Mujeres: " + metabolismo_mujeres;
         } else {
           alert("Por favor ingrese peso, altura y edad, gracias!");
         }
-      };
-    </script>
-  </div>
-  <br>
-  <div>
-    <button id="calc_peso_ideal">Calcular peso ideal</button>
-    <p><span id="pesoideal"></span></p>
-    <p><span id="lectura_peso_ideal"></span></p>
-    <script type="text/javascript">
-      calc_peso_ideal = document.getElementById("calc_peso_ideal");
-      calc_peso_ideal.onclick = function () {
-        peso = document.getElementById("kg");
-        altura = document.getElementById("cm");
-        pesoideal = document.getElementById("pesoideal");
-        lectura_peso_ideal = document.getElementById("lectura_peso_ideal");
-        if (peso.value != "" && altura.value != "") {
-          peso_ideal_minimo =
-            (altura.value / 100) * (altura.value / 100) * 20;
-          peso_ideal_maximo =
-            (altura.value / 100) * (altura.value / 100) * 25;
+      });
+
+    document
+      .getElementById("calc_peso_ideal")
+      .addEventListener("click", function () {
+        var peso = document.getElementById("kg").value;
+        var altura = document.getElementById("cm").value;
+        var pesoideal = document.getElementById("pesoideal");
+        var lectura_peso_ideal = document.getElementById(
+          "lectura_peso_ideal"
+        );
+
+        if (peso != "" && altura != "") {
+          var peso_ideal_minimo = (altura / 100) * (altura / 100) * 20;
+          var peso_ideal_maximo = (altura / 100) * (altura / 100) * 25;
 
           peso_ideal_minimo = Math.round(peso_ideal_minimo * 100) / 100;
           peso_ideal_maximo = Math.round(peso_ideal_maximo * 100) / 100;
@@ -285,91 +291,92 @@
             peso_ideal_minimo +
             " Máximo " +
             peso_ideal_maximo;
-          if (peso.value < peso_ideal_minimo) {
+
+          if (peso < peso_ideal_minimo) {
             lectura_peso_ideal.innerHTML = "Su peso es bajo";
-          } else if (
-            peso.value >= peso_ideal_minimo &&
-            peso.value <= peso_ideal_maximo
-          ) {
+          } else if (peso >= peso_ideal_minimo && peso <= peso_ideal_maximo) {
             lectura_peso_ideal.innerHTML = "Su peso es normal";
-          } else if (peso.value >= peso_ideal_maximo) {
+          } else if (peso >= peso_ideal_maximo) {
             lectura_peso_ideal.innerHTML = "Su peso es alto";
           }
         } else {
-          alert("Por favor ingrese peso y altura, gracias!");
+          alert("Por favor ingrese peso y altura");
         }
-      };
-    </script>
-  </div>
-  <div>
-  <button id="calc_masa_magra">Calcular Masa Magra</button>
-  <p><span id="masa_magra"></span></p>
-  <p><span id="lectura_masa_magra"></span></p>
-  <script type="text/javascript">
-    calc_masa_magra = document.getElementById("calc_masa_magra");
-    calc_masa_magra.onclick = function () {
-      peso = document.getElementById("kg");
-      altura = document.getElementById("cm");
-      masa_magra = document.getElementById("masa_magra");
-      lectura_masa_magra = document.getElementById("lectura_masa_magra");
-      
-      if (peso.value != "" && altura.value != "") {
-        masa_magra_hombres = (0.407 * peso.value) + (0.267 * altura.value) - 19.2;
-        masa_magra_mujeres = (0.252 * peso.value) + (0.473 * altura.value) - 48.3;
+      });
 
-        masa_magra_hombres = Math.round(masa_magra_hombres * 100) / 100;
-        masa_magra_mujeres = Math.round(masa_magra_mujeres * 100) / 100;
+    document
+      .getElementById("calc_masa_magra")
+      .addEventListener("click", function () {
+        var peso = document.getElementById("kg").value;
+        var altura = document.getElementById("cm").value;
+        var masa_magra = document.getElementById("masa_magra");
+        var lectura_masa_magra = document.getElementById(
+          "lectura_masa_magra"
+        );
 
-        masa_magra.innerHTML = "Masa Magra: Hombres " + masa_magra_hombres + " kg, Mujeres " + masa_magra_mujeres + " kg";
+        if (peso != "" && altura != "") {
+          var masa_magra_hombres = 0.407 * peso + 0.267 * altura - 19.2;
+          var masa_magra_mujeres = 0.252 * peso + 0.473 * altura - 48.3;
 
-        // Rangos de masa magra para hombres
-        if (masa_magra_hombres < 0.7 * promedio_hombres) {
-          lectura_masa_magra.innerHTML = "Bajo: Menos del 70% del promedio para la edad y la altura.";
-        } else if (masa_magra_hombres >= 0.7 * promedio_hombres && masa_magra_hombres <= 0.9 * promedio_hombres) {
-          lectura_masa_magra.innerHTML = "Normal: Alrededor del 70-90% del promedio para la edad y la altura.";
+          masa_magra_hombres = Math.round(masa_magra_hombres * 100) / 100;
+          masa_magra_mujeres = Math.round(masa_magra_mujeres * 100) / 100;
+
+          masa_magra.innerHTML =
+            "Masa Magra: Hombres " +
+            masa_magra_hombres +
+            " kg, Mujeres " +
+            masa_magra_mujeres +
+            " kg";
+
+          if (masa_magra_hombres < 0.7 * promedio_hombres) {
+            lectura_masa_magra.innerHTML =
+              "Bajo: Menos del 70% del promedio para la edad y la altura.";
+          } else if (
+            masa_magra_hombres >= 0.7 * promedio_hombres &&
+            masa_magra_hombres <= 0.9 * promedio_hombres
+          ) {
+            lectura_masa_magra.innerHTML =
+              "Normal: Alrededor del 70-90% del promedio para la edad y la altura.";
+          } else {
+            lectura_masa_magra.innerHTML =
+              "Alto: Más del 90% del promedio para la edad y la altura.";
+          }
+
+          // Rangos de masa magra para mujeres
+          if (masa_magra_mujeres < 0.6 * promedio_mujeres) {
+            lectura_masa_magra.innerHTML =
+              "Bajo: Menos del 60% del promedio para la edad y la altura.";
+          } else if (
+            masa_magra_mujeres >= 0.6 * promedio_mujeres &&
+            masa_magra_mujeres <= 0.8 * promedio_mujeres
+          ) {
+            lectura_masa_magra.innerHTML =
+              "Normal: Alrededor del 60-80% del promedio para la edad y la altura.";
+          } else {
+            lectura_masa_magra.innerHTML =
+              "Alto: Más del 80% del promedio para la edad y la altura.";
+          }
         } else {
-          lectura_masa_magra.innerHTML = "Alto: Más del 90% del promedio para la edad y la altura.";
+          alert("Por favor, ingrese peso y altura");
         }
+      });
 
-        // Rangos de masa magra para mujeres
-        if (masa_magra_mujeres < 0.6 * promedio_mujeres) {
-          lectura_masa_magra.innerHTML = "Bajo: Menos del 60% del promedio para la edad y la altura.";
-        } else if (masa_magra_mujeres >= 0.6 * promedio_mujeres && masa_magra_mujeres <= 0.8 * promedio_mujeres) {
-          lectura_masa_magra.innerHTML = "Normal: Alrededor del 60-80% del promedio para la edad y la altura.";
-        } else {
-          lectura_masa_magra.innerHTML = "Alto: Más del 80% del promedio para la edad y la altura.";
-        }
-      } else {
-        alert("Por favor, ingrese peso y altura, gracias!");
-      }
-    };
-  </script>
-</div>
-  <br>
-  <div>
-    <button id="calc_pgrasa">Calcular rango de porcentaje de grasa</button>
-    <p><span id="porcentajegrasa"></span></p>
-    <p><span id="lectura_pgrasa"></span></p>
-    <script type="text/javascript">
-      calc_pgrasa = document.getElementById("calc_pgrasa");
-      calc_pgrasa.onclick = function () {
-        ptric = document.getElementById("p_tric");
-        psube = document.getElementById("p_sube");
-        psupra = document.getElementById("p_supra");
-        pabdo = document.getElementById("p_abdo");
-        porcentajegrasa = document.getElementById("porcentajegrasa");
-        lectura_pgrasa = document.getElementById("lectura_pgrasa");
-        if (
-          ptric.value != "" &&
-          psube.value != "" &&
-          psupra.value != "" &&
-          pabdo.value != ""
-        ) {
-          pgrasa =
-            (parseInt(ptric.value) +
-              parseInt(psube.value) +
-              parseInt(psupra.value) +
-              parseInt(pabdo.value)) *
+    document
+      .getElementById("calc_pgrasa")
+      .addEventListener("click", function () {
+        var ptric = document.getElementById("p_tric").value;
+        var psube = document.getElementById("p_sube").value;
+        var psupra = document.getElementById("p_supra").value;
+        var pabdo = document.getElementById("p_abdo").value;
+        var porcentajegrasa = document.getElementById("porcentajegrasa");
+        var lectura_pgrasa = document.getElementById("lectura_pgrasa");
+
+        if (ptric != "" && psube != "" && psupra != "" && pabdo != "") {
+          var pgrasa =
+            (parseInt(ptric) +
+              parseInt(psube) +
+              parseInt(psupra) +
+              parseInt(pabdo)) *
             0.153 +
             5.783;
 
@@ -382,16 +389,12 @@
           }
         } else {
           alert(
-            "Por favor ingrese pliegues tricipital, subescapular, suprailiaco y abdominal, gracias"
+            "Por favor ingrese pliegues tricipital, subescapular, suprailiaco y abdominal"
           );
         }
-      };
-    </script>
-  </div>
-  <br>
-  <button id="borrar">Borrar</button>
-  <script type="text/javascript">
-    document.getElementById("borrar").addEventListener("click", function() {
+      });
+
+    document.getElementById("borrar").addEventListener("click", function () {
       var inputs = document.querySelectorAll("input[type='number']");
       for (var i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
